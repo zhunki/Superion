@@ -70,7 +70,7 @@ afl-as: afl-as.c afl-as.h $(COMM_HDR) | test_x86
 	ln -sf afl-as as
 
 afl-fuzz: afl-fuzz.c $(COMM_HDR) | test_x86
-	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) ./tree_mutation/js_parser/libTreeMutation.so
+	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) /home/b/gramFuzz/tree_mutation/js_parser/libTreeMutation.so
 
 afl-showmap: afl-showmap.c $(COMM_HDR) | test_x86
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS)

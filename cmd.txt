@@ -56,10 +56,14 @@ make
 
 Webkit:
 
-svn checkout https://svn.webkit.org/repository/webkit/trunk WebKit
+svn checkout https://svn.webkit.org/repository/webkit/trunk/Source Source
+svn checkout https://svn.webkit.org/repository/webkit/trunk/Tools Tools
+svn checkout https://svn.webkit.org/repository/webkit/trunk/PerformanceTests PerformanceTests
+svn checkout https://svn.webkit.org/repository/webkit/trunk/JSTests/stress stress
+wget https://svn.webkit.org/repository/webkit/trunk/CMakeLists.txt
 
 //because of some files cannot be compiled with asan, use blacklist
-export CC=~/afl-2.52b/afl-clang-fast
+export CC=~/gr/afl-clang-fast
 export CXX=~/afl-2.52b/afl-clang-fast++
 export AFL_INST_BLACKLIST=/home/b/blacklist.txt
 export AFL_USE_ASAN=1
@@ -70,17 +74,24 @@ export AFL_INST_RATIO=10
 //in 64bit system, we need to comment out all "setrlimit(" when using asan
 
 ./afl-fuzz -M f1 -x ~/afl-2.52b/dictionaries/js.dict -m 4G -t 100+ -i ~/jerry_seeds/ -o ~/jscout_test/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f2 -m 4G -t 100+ -i ~/jerry_seeds/ -o ~/jscout_test/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f3 -m 4G -t 100+ -i ~/jerry_seeds/ -o ~/jscout_test/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f4 -m 4G -t 100+ -i ~/jerry_seeds/ -o ~/jscout_test/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
 
-for f in `ls jscout_test/f*/crashes/id*`; do d=`echo $f | cut -d'/' -f 2`; id=`echo $f | cut -d':' -f 2`; signal=`echo $f | cut -d':' -f 3`; mv $f /home/b/jsc_crash/${d}_id${id:0:6}_sig_${signal:0:2}; done
+./afl-fuzz -S f2 -m 4G -t 100+ -i ~/webkit_seeds/ -o ~/webkit_fuzz/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -S f3 -m 4G -t 100+ -i ~/webkit_seeds/ -o ~/webkit_fuzz/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -S f4 -m 4G -t 100+ -i ~/webkit_seeds/ -o ~/webkit_fuzz/ ~/WebKit/WebKitBuild/Release/bin/jsc @@
 
-for f in `ls`; do ~/WebKit/WebKitBuild/Release/bin/jsc  $f 2>&1 | grep "ConservativeRoots.cpp:103"; if [ $? -eq 0 ]; then rm $f; fi done
+for f in `ls webkit_fuzz/f*/crashes/id*`; do d=`echo $f | cut -d'/' -f 2`; id=`echo $f | cut -d':' -f 2`; signal=`echo $f | cut -d':' -f 3`; mv $f /home/b/jsc_crash/${d}_id${id:0:6}_sig_${signal:0:2}; done
 
-for f in `ls`; do ~/WebKit/WebKitBuild/Release/bin/jsc  $f 2>&1 | grep "Register.h:119"; if [ $? -eq 0 ]; then rm $f; fi done
+for f in `ls out/fuzz*/crashes/id*`; do d=`echo $f | cut -d'/' -f 2`; id=`echo $f | cut -d':' -f 2`; signal=`echo $f | cut -d':' -f 3`; mv $f /home/b/chakra_fuzz/chakra_crash/${d}_id${id:0:6}_sig_${signal:0:2}; done
+
+for f in `ls`; do echo $f; /home/b/Webkit_asan/WebKitBuild/Release/bin/jsc $f 2>&1 | grep "JSC::DFG::BasicBlock::removePredecessor"; if [ $? -eq 0 ]; then mv $f /home/b/webkit_crash/removePredecessor/; fi done
 
 find /home/b/WebKit/ -name *.js -exec cp {} /home/b/webkit_seeds/ \;
+
+export ASAN_SYMBOLIZER_PATH=/usr/lib/llvm-6.0/bin/llvm-symbolizer
+export ASAN_OPTIONS=symbolize=1
+
+b WTF::fastMalloc
+b DFGCFGSimplificationPhase.cpp:387
 
 
 ========================================================

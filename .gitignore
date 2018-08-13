@@ -22,3 +22,11 @@ js_parser/dist/libantlr4-runtime.so.4.7
 js_parser/runtime/Makefile
 js_parser/tree_mutation/TreeMutation
 js_parser\dist\libantlr4-runtime.so.4.7.1
+out/f1/plot_data
+tree_mutation/js_parser/TreeMutation
+*.includecache
+*.internal
+*.internal
+*.includecache
+tree_mutation/CMakeCache.txt
+tree_mutation/CMakeFiles/

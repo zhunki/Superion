@@ -199,6 +199,8 @@ bool AFLCoverage::runOnModule(Module &M) {
                        * specified in the list. */
                       if (instFilename.str().length() >= it->length()) {
                           if (instFilename.str().compare(instFilename.str().length() - it->length(), it->length(), *it) == 0) {
+								std::cout<<instFilename.str()<<std::endl;
+								std::cout<<*it<<std::endl;
                               instrumentBlock = true;
                               break;
                           }

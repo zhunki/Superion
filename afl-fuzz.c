@@ -218,7 +218,7 @@ static s32 cpu_core_count;            /* CPU core count                   */
 #ifdef HAVE_AFFINITY
 
 static s32 cpu_aff = -1;       	      /* Selected CPU core                */
-
+static s32 cpu_a = -1;       	      /* Selected CPU core                */
 #endif /* HAVE_AFFINITY */
 
 static FILE* plot_file;               /* Gnuplot output file              */
@@ -498,7 +498,7 @@ static void bind_to_free_cpu(void) {
   }
 
   OKF("Found a free CPU core, binding to #%u.", i);
-
+  if(cpu_a!=-1)i=cpu_a;	
   cpu_aff = i;
 
   CPU_ZERO(&c);
@@ -5697,6 +5697,7 @@ skip_bitflip:
   stage_cycles[STAGE_ARITH32] += stage_max;
 
 skip_arith:
+goto skip_interest;
   /**********************
    * INTERESTING VALUES *
    **********************/
@@ -6137,7 +6138,7 @@ retry_external_pick:
   new_buf = ck_alloc_nozero(target->len);
   ck_read(fd, new_buf, target->len, target->fname);
   close(fd);
-  stage_max=parse(out_buf,len,new_buf,target->len);
+  stage_max=parse(in_buf,len,new_buf,target->len);
   ck_free(new_buf);
 
   orig_hit_cnt =  queued_paths + unique_crashes;
@@ -7874,6 +7875,18 @@ static void save_cmdline(u32 argc, char** argv) {
 /* Main entry point */
 
 int main(int argc, char** argv) {
+	const rlim_t kStackSize=64L*1024L*1024L;
+	struct rlimit rl;
+	int result=getrlimit(RLIMIT_STACK,&rl);
+	if(result==0){
+		if(rl.rlim_cur<kStackSize){
+			rl.rlim_cur=kStackSize;
+			result=setrlimit(RLIMIT_STACK,&rl);
+			if(result!=0){
+				FATAL("setrlimit returned result != 0.\n");
+			}
+		}
+	}
 
   s32 opt;
   u64 prev_queued = 0;
@@ -7893,7 +7906,7 @@ int main(int argc, char** argv) {
   gettimeofday(&tv, &tz);
   srandom(tv.tv_sec ^ tv.tv_usec ^ getpid());
 
-  while ((opt = getopt(argc, argv, "+i:o:f:m:t:T:dnCB:S:M:x:Q")) > 0)
+  while ((opt = getopt(argc, argv, "+i:o:a:f:m:t:T:dnCB:S:M:x:Q")) > 0)
 
     switch (opt) {
 
@@ -7910,6 +7923,11 @@ int main(int argc, char** argv) {
 
         if (out_dir) FATAL("Multiple -o options not supported");
         out_dir = optarg;
+        break;
+
+      case 'a': /* cpu */
+
+        if (sscanf(optarg,"%d",&cpu_a)<1) FATAL("Bad syntax for -a");
         break;
 
       case 'M': { /* master sync ID */

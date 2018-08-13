@@ -21,8 +21,8 @@ public:
   vector<string> texts;
 
   virtual antlrcpp::Any visitProgram(ECMAScriptParser::ProgramContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
@@ -81,8 +81,8 @@ public:
   }
 
   virtual antlrcpp::Any visitEmptyStatement(ECMAScriptParser::EmptyStatementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 

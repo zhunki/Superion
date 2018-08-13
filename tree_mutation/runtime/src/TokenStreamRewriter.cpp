@@ -262,6 +262,7 @@ std::string TokenStreamRewriter::getText(const Interval &interval) {
 }
 
 std::string TokenStreamRewriter::getText(const std::string &programName, const Interval &interval) {
+
   std::vector<TokenStreamRewriter::RewriteOperation*> &rewrites = _programs[programName];
   size_t start = interval.a;
   size_t stop = interval.b;

@@ -19,7 +19,7 @@ public:
   vector<string> texts;
 
   virtual antlrcpp::Any visitProgram(ECMAScriptParser::ProgramContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    //texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 

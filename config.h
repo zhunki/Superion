@@ -139,7 +139,7 @@
 
 /* Maximum size of input file, in bytes (keep under 100MB): */
 
-#define MAX_FILE            (1 * 1024 * 1024)
+#define MAX_FILE            (1 * 10 * 1024)
 
 /* The same, for the test case minimizer: */
 
@@ -333,7 +333,7 @@
 /* Uncomment this to use inferior block-coverage-based instrumentation. Note
    that you need to recompile the target binary for this to have any effect: */
 
-#define COVERAGE_ONLY
+//#define COVERAGE_ONLY
 
 /* Uncomment this to ignore hit counts and output just one bit per tuple.
    As with the previous setting, you will need to recompile the target

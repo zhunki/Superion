@@ -13,14 +13,18 @@ using namespace std;
 extern "C" int parse(char* target,size_t len,char* second,size_t lenS);
 extern "C" void fuzz(int index, char** ret, size_t* retlen);
 
-#define MAXSAMPLES 30000
+#define MAXSAMPLES 10000
 #define MAXTEXT 200
-string ret[MAXSAMPLES];
+
+string ret[MAXSAMPLES+2];
+
+bool cmp(const string &x, const string &y){return x<y;}
 
 int parse(char* target,size_t len,char* second,size_t lenS) {
-
 	vector<misc::Interval> intervals;
+    intervals.clear();
 	vector<string> texts;
+    texts.clear();
 	int num_of_smaples=0;
 	//parse the target
 	string targetString;
@@ -37,15 +41,14 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 			//std::cerr<<"NumberOfSyntaxErrors:"<<parser.getNumberOfSyntaxErrors()<<endl;
 			return 0;
 		}else{
- 
-			ECMAScriptBaseVisitor *visitor=new ECMAScriptBaseVisitor();
+ 			ECMAScriptBaseVisitor *visitor=new ECMAScriptBaseVisitor();
 			visitor->visit(tree);
 
 			int interval_size = visitor->intervals.size();
 			for(int i=0;i<interval_size;i++){
 				if(find(intervals.begin(),intervals.end(),visitor->intervals[i])!=intervals.end()){
 				}else if(visitor->intervals[i].a<visitor->intervals[i].b){
-					intervals.push_back(visitor->intervals[i]);
+					intervals.push_back(visitor->intervals[i]);	
 				}
 			}
 			int texts_size = visitor->texts.size();
@@ -87,19 +90,16 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 				}
 
 				interval_size = intervals.size();
+				sort(texts.begin(),texts.end());
 				texts_size = texts.size();
 
 				for(int i=0;i<interval_size;i++){
 					for(int j=0;j<texts_size;j++){
 						rewriter.replace(intervals[i].a,intervals[i].b,texts[j]);
 						ret[num_of_smaples++]=rewriter.getText();
-						if(num_of_smaples>MAXSAMPLES){
-							break;
-						}
+						if(num_of_smaples>=MAXSAMPLES)break;
 					}
-					if(num_of_smaples>MAXSAMPLES){
-						break;
-					}
+					if(num_of_smaples>=MAXSAMPLES)break;
 				}
 			}catch(range_error e){
 				//std::cerr<<"range_error"<<second<<endl;
@@ -113,22 +113,25 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 }
 
 void fuzz(int index, char** result, size_t* retlen){
-  *retlen=ret[index].length();
-  *result=strdup(ret[index].c_str());
-  //result=(char*)malloc(retlen+1);
-  //strcpy(result,ret[index].c_str());
+	*retlen=ret[index].length();
+	*result=strdup(ret[index].c_str());
 }
 
-/*
+
 int main(){
   	ifstream in;
-	string target;
-  	in.open("/home/b/jscout_test/f2/queue/id:000686,src:000563,op:tree,pos:0,+cov");
-	while(in>>target){
+	char target[100*1024];
+	int len=0;
+  	in.open("/home/b/test_out/f3/queue/id:000001,orig:0b39e4bd-7603-11e8-a804-a157b68beb8f.js");
+	while(!in.eof()){
+		in.read(target,102400);
 	}
-  	int len=sizeof(target);
+	len=in.gcount();
+	cout<<target<<endl;
+	cout<<len<<endl;
   	char second[]="var y=Number(20);\n";
   	int lenS=sizeof(second);
+	cout<<lenS<<endl;
   	int num_of_smaples=parse(target,len,second,lenS);
   	for(int i=0;i<num_of_smaples;i++){
      	char* retbuf=nullptr;
@@ -136,6 +139,6 @@ int main(){
      	fuzz(i,&retbuf,&retlen);
      	cout<<retlen<<retbuf<<endl;
   	}
-  	cout<<num_of_smaples<<endl;
-}*/
+  	cout<<"num_of_smaples:"<<num_of_smaples<<endl;
+}
 
