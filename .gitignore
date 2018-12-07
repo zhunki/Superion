@@ -31,3 +31,4 @@ tree_mutation/js_parser/TreeMutation
 tree_mutation/CMakeCache.txt
 tree_mutation/CMakeFiles/
 tree_mutation/dist/
+*.pyc
