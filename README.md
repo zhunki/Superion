@@ -1,3 +1,11 @@
+#Superion
+
+Superion is a fuzzer which extends the famous AFL (http://lcamtuf.coredump.cx/afl/) to support structured inputs such as JavaScript and XML. The paper "Superion: Grammar-Aware Greybox Fuzzing" is accepted by ICSE 2019 (https://2019.icse-conferences.org/track/icse-2019-Technical-Papers#event-overview). 
+
+Superion mainly adds a mutation strategy to AFL. The mutation strategy first parses a input into Abstract Syntax Tree(AST)  and then randomly choose another input from AFL’s queue and also parse it into AST. A sub tree of the target input can be replaced by another sub tree ether from target input itself or randomly chosen supplementary sample. Therefore, hundreds of new samples are generated and executed to find new path in tested programs.
+
+The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generates a parser given the grammar file. 
+
 ========================================================
 
 1. build antlr-runtime
