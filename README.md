@@ -61,10 +61,10 @@ export AFL_HARDEN=1
 In the experiments, we fuzzed it using four processes.
 
 ```
-./afl-fuzz -M f1 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f2 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f3 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
-./afl-fuzz -S f4 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -M f1 -m 4G -t 500+ -i ~/js_seeds/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -S f2 -m 4G -t 500+ -i ~/js_seeds/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -S f3 -m 4G -t 500+ -i ~/js_seeds/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
+./afl-fuzz -S f4 -m 4G -t 500+ -i ~/js_seeds/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
 ```
 
 ## Fuzzing JerryScript:
