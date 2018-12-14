@@ -6,9 +6,9 @@ Superion mainly adds a mutation strategy to AFL. The mutation strategy first par
 
 The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generates a parser given the grammar file. 
 
-# Building Superion
+## Building Superion
 
-1. Build ANTLR runtime
+### Build ANTLR runtime
 
 To build Superion, we first need to build the ANTLR runtime. The ANTLR runtime is located in tree_mutation folder.
 
@@ -21,7 +21,7 @@ If a missing uuid error is raised, you need to install uuid first and add -fPIC 
 sudo apt-get install uuid-dev
 //add -fPIC to MY_CXX_WARNING_FLAGS in tree_mutation/CMakeLists.txt
 
-2. Build Tree Mutator
+### Build Tree Mutator
 
 The JS parser is located in tree_mutation/js_parser folder. Besides, we also have a xml_parser, vbs_parser there.
 
@@ -30,14 +30,14 @@ for f in *.cpp; do g++ -I ../runtime/src/ -c $f -std=c++11; done
 g++ -shared -std=c++11 *.o ../dist/libantlr4-runtime.a  -o libTreeMutation.so
 cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" afl-fuzz.c -o afl-fuzz -ldl ./tree_mutation/js_parser/libTreeMutation.so
 
-3. Build AFL
+### Build AFL
 
 //add ./js_parser/tree_mutation/libTreeMutation.so to makefile
 cd llvm_mode/
 LLVM_CONFIG=llvm-config-3.8 CXXFLAGS="-DLLVM38" make
 make
 
-# Fuzzing WebKit
+## Fuzzing WebKit
 
 Webkit is one of our fuzzing target. Its source code can be find in https://github.com/WebKit/webkit.
 
@@ -55,7 +55,7 @@ In the experiments, we fuzzed it using four processes.
 ./afl-fuzz -S f3 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
 ./afl-fuzz -S f4 -m 4G -t 500+ -i ~/js_seeds_cmin_coverage_only/ -o ~/jscout_test/ ~/webkit/WebKitBuild/Release/bin/jsc @@
 
-# Fuzzing JerryScript:
+## Fuzzing JerryScript:
 
 export CC=~/superion/afl-gcc
 export CXX=~/superion/afl-g++
