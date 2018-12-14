@@ -2,9 +2,9 @@
 
 Superion is a fuzzer which extends the famous AFL (http://lcamtuf.coredump.cx/afl/) to support structured inputs such as JavaScript and XML. The paper "Superion: Grammar-Aware Greybox Fuzzing" is accepted by ICSE 2019 (https://2019.icse-conferences.org/track/icse-2019-Technical-Papers#event-overview). 
 
-Superion mainly adds a mutation strategy to AFL. The mutation strategy first parses a input into Abstract Syntax Tree(AST)  and then randomly choose another input from AFL’s queue and also parse it into AST. A sub tree of the target input can be replaced by another sub tree ether from target input itself or randomly chosen supplementary sample. Therefore, hundreds of new samples are generated and executed to find new path in tested programs.
+Superion mainly adds a mutation strategy to AFL. The mutation strategy first parses an input into Abstract Syntax Tree(AST)  and then randomly choose another input from AFL’s queue and also parse it into AST. A sub tree of the target input can be replaced by another sub tree either from target input itself or randomly chosen supplementary sample. Therefore, hundreds of new samples are generated and executed to find a new path in tested programs.
 
-The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generates a parser given the grammar file. 
+The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generate a parser given the grammar file. 
 
 ## Some harmless POCs
 
@@ -67,7 +67,7 @@ sudo apt-get install uuid-dev
 
 ### Build tree mutator
 
-The JS parser is located in tree_mutation/js_parser folder. Besides, we also have a xml_parser, vbs_parser there.
+The JS parser is located in tree_mutation/js_parser folder. Besides, we also have an xml_parser, vbs_parser there.
 
 ```
 cd tree_mutation/js_parser
@@ -87,7 +87,7 @@ make
 
 ## Fuzzing WebKit
 
-Webkit is one of our fuzzing target. Its source code can be find in https://github.com/WebKit/webkit. The initial seeds we used is obtained from https://github.com/WebKit/webkit/tree/master/JSTests/stress.
+Webkit is one of our fuzzing targets. Its source code can be found in https://github.com/WebKit/webkit. The initial seeds we used is obtained from https://github.com/WebKit/webkit/tree/master/JSTests/stress.
 
 To fuzz it using AFL or Superion, we first need to instrument the executable. 
 
