@@ -47,7 +47,7 @@ make
 
 ## Fuzzing WebKit
 
-Webkit is one of our fuzzing target. Its source code can be find in https://github.com/WebKit/webkit.
+Webkit is one of our fuzzing target. Its source code can be find in https://github.com/WebKit/webkit. The initial seeds we used is obtained from https://github.com/WebKit/webkit/tree/master/JSTests/stress.
 
 To fuzz it using AFL or Superion, we first need to instrument the executable. 
 
