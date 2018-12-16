@@ -58,11 +58,10 @@ cmake ./
 make
 ```
 
-If a missing uuid error is raised, you need to install uuid first and add -fPIC to MY_CXX_WARNING_FLAGS in tree_mutation/CMakeLists.txt.
+If a missing uuid error is raised, you need to install uuid first.
 
 ```
 sudo apt-get install uuid-dev
-//add -fPIC to MY_CXX_WARNING_FLAGS in tree_mutation/CMakeLists.txt
 ```
 
 ### Build tree mutator
