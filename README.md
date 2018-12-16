@@ -71,7 +71,7 @@ The JS parser is located in tree_mutation/js_parser folder. Besides, we also hav
 ```
 cd /path_to_Superion/tree_mutation/js_parser
 
-for f in *.cpp; do g++ -I ../runtime/src/ -c $f -std=c++11; done
+for f in *.cpp; do g++ -I ../runtime/src/ -c $f -fPIC -std=c++11; done
 
 g++ -shared -std=c++11 *.o ../dist/libantlr4-runtime.a  -o libTreeMutation.so
 ```
