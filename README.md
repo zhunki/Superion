@@ -70,9 +70,10 @@ The JS parser is located in tree_mutation/js_parser folder. Besides, we also hav
 
 ```
 cd tree_mutation/js_parser
+
 for f in *.cpp; do g++ -I ../runtime/src/ -c $f -std=c++11; done
+
 g++ -shared -std=c++11 *.o ../dist/libantlr4-runtime.a  -o libTreeMutation.so
-cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" afl-fuzz.c -o afl-fuzz -ldl ./tree_mutation/js_parser/libTreeMutation.so
 ```
 
 ### Build AFL
