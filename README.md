@@ -48,6 +48,15 @@ for (var i=0; i < 10000; i++) {
 
 ## Building Superion
 
+## Dependencies 
+
+uuid
+clang
+
+## Requirement
+
+The following build instructions are tested on Ubuntu 16.04 with gcc-5.4.0.
+
 ### Build ANTLR runtime
 
 To build Superion, we first need to build the ANTLR runtime. The ANTLR runtime is located in tree_mutation folder.
