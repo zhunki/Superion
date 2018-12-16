@@ -48,14 +48,7 @@ for (var i=0; i < 10000; i++) {
 
 ## Building Superion
 
-## Dependencies 
-
-uuid
-clang
-
-## Requirement
-
-The following build instructions are tested on Ubuntu 16.04 with gcc-5.4.0.
+The following build instructions are tested on Ubuntu 16.04 with gcc-5.4.0 and clang-3.8.
 
 ### Build ANTLR runtime
 
