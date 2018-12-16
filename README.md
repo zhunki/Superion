@@ -84,14 +84,13 @@ cd /path_to_Superion/llvm_mode/
 LLVM_CONFIG=llvm-config-3.8 CXXFLAGS="-DLLVM38" make
 ```
 
-To link libTreeMutation.so with afl-fuzz, which is the fuzzor, you can eight run
+To link libTreeMutation.so with afl-fuzz, which is the fuzzor
 
 ```
+cd /path_to_Superion/
+
 cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" afl-fuzz.c -o afl-fuzz -ldl /path_to_Superion/tree_mutation/js_parser/libTreeMutation.so
-```
-or
-```
-//add /path_to_Superion/tree_mutation/js_parser/libTreeMutation.so to makefile
+
 make
 ```
 
