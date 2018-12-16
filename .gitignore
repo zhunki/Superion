@@ -20,6 +20,4 @@ tree_mutation/Makefile
 tree_mutation/dist/
 *.includecache
 *.internal
-*.internal
-*.includecache
 
