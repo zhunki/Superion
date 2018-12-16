@@ -53,7 +53,7 @@ for (var i=0; i < 10000; i++) {
 To build Superion, we first need to build the ANTLR runtime. The ANTLR runtime is located in tree_mutation folder.
 
 ```
-cd tree_mutation/
+cd /path_to_Superion/tree_mutation/
 cmake ./
 make
 ```
@@ -69,7 +69,7 @@ sudo apt-get install uuid-dev
 The JS parser is located in tree_mutation/js_parser folder. Besides, we also have an xml_parser, vbs_parser there.
 
 ```
-cd tree_mutation/js_parser
+cd /path_to_Superion/tree_mutation/js_parser
 
 for f in *.cpp; do g++ -I ../runtime/src/ -c $f -std=c++11; done
 
@@ -78,16 +78,16 @@ g++ -shared -std=c++11 *.o ../dist/libantlr4-runtime.a  -o libTreeMutation.so
 
 ### Build AFL
 
-To compile afl-clang-fast
+To compile afl-clang-fast and afl-clang-fast++, which are used to instrument fuzzing targets.
 ```
-cd llvm_mode/
+cd /path_to_Superion/llvm_mode/
 LLVM_CONFIG=llvm-config-3.8 CXXFLAGS="-DLLVM38" make
 ```
 
-To link libTreeMutation.so with afl-fuzz, you can eight run
+To link libTreeMutation.so with afl-fuzz, which is the fuzzor, you can eight run
 
 ```
-cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" afl-fuzz.c -o afl-fuzz -ldl /path_to_superion/tree_mutation/js_parser/libTreeMutation.so
+cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" afl-fuzz.c -o afl-fuzz -ldl /path_to_Superion/tree_mutation/js_parser/libTreeMutation.so
 ```
 or
 ```
