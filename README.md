@@ -66,6 +66,21 @@ If a missing uuid error is raised, you need to install uuid first.
 sudo apt-get install uuid-dev
 ```
 
+### Generate Lexer, Parser, Visitor automatically
+
+add antlr-4.7-complete.jar to classpath
+
+xml:
+```
+java org.antlr.v4.Tool -o E:\xml\ -visitor -no-listener -Dlanguage=Java E:\xml\XMLLexer.g4 java org.antlr.v4.Tool -o E:\xml\ -visitor -no-listener -Dlanguage=Java E:\xml\XMLParser.g4
+```
+
+javascript:
+```
+java org.antlr.v4.Tool -o E:\jsgrammar\ -visitor -no-listener -Dlanguage=Java E:\jsgrammar\JavaScriptLexer.g4 java org.antlr.v4.Tool -o E:\jsgrammar\ -visitor -no-listener -Dlanguage=Java E:\jsgrammar\JavaScriptParser.g4
+```
+
+
 ### Build tree mutator
 
 The JS parser is located in tree_mutation/js_parser folder. Besides, we also have an xml_parser, vbs_parser there.
