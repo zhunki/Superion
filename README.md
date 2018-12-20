@@ -93,6 +93,12 @@ make
 
 Webkit is one of our fuzzing targets. Its source code can be found in https://github.com/WebKit/webkit. The initial seeds we used is obtained from https://github.com/WebKit/webkit/tree/master/JSTests/stress.
 
+To download WebKit source code:
+
+```
+svn checkout https://svn.webkit.org/repository/webkit/trunk WebKit
+```
+
 To fuzz it using AFL or Superion, we first need to instrument the executable. 
 
 ```
