@@ -26,7 +26,9 @@ If a missing uuid error is raised, you need to install uuid first.
 sudo apt-get install uuid-dev
 ```
 
-### Generate Lexer, Parser, Visitor automatically
+### Generate Lexer, Parser, Visitor automatically (Optional)
+
+The project already included xml and javascript parsers generated as follows. If you need to support other input grammar, you caan refer to the following instructions.
 
 add antlr-4.7-complete.jar to classpath
 
