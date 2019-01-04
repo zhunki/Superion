@@ -34,14 +34,13 @@ add antlr-4.7-complete.jar to classpath
 
 xml:
 ```
-java org.antlr.v4.Tool -o path -visitor -no-listener -Dlanguage=Cpp XMLLexer.g4 
-java org.antlr.v4.Tool -o path -visitor -no-listener -Dlanguage=Cpp XMLParser.g4
+java -jar antlr-4.7-complete.jar -o path -visitor -no-listener -Dlanguage=Cpp XMLLexer.g4 
+java -jar antlr-4.7-complete.jar -o path -visitor -no-listener -Dlanguage=Cpp XMLParser.g4
 ```
 
 javascript:
 ```
-java org.antlr.v4.Tool -o path -visitor -no-listener -Dlanguage=Cpp JavaScriptLexer.g4 
-java org.antlr.v4.Tool -o path -visitor -no-listener -Dlanguage=Cpp JavaScriptParser.g4
+java -jar antlr-4.7-complete.jar -o path -visitor -no-listener -Dlanguage=Cpp ECMAScript.g4 
 ```
 
 
