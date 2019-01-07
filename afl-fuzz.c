@@ -4485,6 +4485,8 @@ static u32 next_p2(u32 val) {
    file size, to keep the stage short and sweet. */
 
 static u8 trim_case(char** argv, struct queue_entry* q, u8* in_buf) {
+  return 0;
+  
   static u8 tmp[64];
   static u8 clean_trace[MAP_SIZE];
 
@@ -6169,8 +6171,9 @@ retry_external_pick:
   /****************
    * RANDOM HAVOC *
    ****************/
-   ret_val = 0;
-goto abandon_entry;
+  ret_val = 0;
+  goto abandon_entry;
+  
 havoc_stage:
 
   stage_cur_byte = -1;
