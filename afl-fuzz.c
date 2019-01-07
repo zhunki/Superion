@@ -6169,6 +6169,7 @@ retry_external_pick:
   /****************
    * RANDOM HAVOC *
    ****************/
+   ret_val = 0;
 goto abandon_entry;
 havoc_stage:
 
