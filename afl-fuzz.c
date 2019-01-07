@@ -2466,25 +2466,6 @@ static u8 run_target(char** argv, u32 timeout) {
 
 }
 
-static void write_to_stats(char *str) {
-  s32 fp;
-  fp = open("/home/b/stats_libplist.txt", O_WRONLY | O_APPEND | O_EXCL, 0600);
-  if (fp < 0) PFATAL("Unable to create /home/b/stats_libplist.txt");
-
-  ck_write(fp, str, strlen(str), "/home/b/stats_libplist.txt");
-  close(fp);
-}
-
-static void write_to_stats1(char *str) {
-  s32 fp;
-  fp = open("/home/b/ratio_libplist.txt", O_WRONLY | O_APPEND | O_EXCL, 0600);
-  if (fp < 0) PFATAL("Unable to create /home/b/ratio_libplist.txt");
-
-  ck_write(fp, str, strlen(str), "/home/b/ratio_libplist.txt");
-  close(fp);
-}
-
-
 /* Write modified data to file for testing. If out_file is set, the old file
    is unlinked and a new one is created. Otherwise, out_fd is rewound and
    truncated. */
@@ -6741,54 +6722,6 @@ abandon_entry:
   ck_free(out_buf);
   ck_free(eff_map);
 
-//tree
-
-/*
-char tmp[512];
-sprintf(tmp,"%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld\n",
-stage_finds[STAGE_FLIP1]+0,
-stage_finds[STAGE_FLIP2]+0,
-stage_finds[STAGE_FLIP4]+0,
-stage_finds[STAGE_FLIP8]+0,
-stage_finds[STAGE_FLIP16]+0,
-stage_finds[STAGE_FLIP32]+0,
-stage_finds[STAGE_ARITH8]+0,
-stage_finds[STAGE_ARITH16]+0,
-stage_finds[STAGE_ARITH32],
-stage_finds[STAGE_INTEREST8]+0,
-stage_finds[STAGE_INTEREST16]+0,
-stage_finds[STAGE_INTEREST32]+0,
-stage_finds[STAGE_EXTRAS_UO]+0,
-stage_finds[STAGE_EXTRAS_UI]+0,
-stage_finds[STAGE_EXTRAS_AO]+0,
-stage_finds[STAGE_EXTRAS_AO]+0,
-stage_finds[STAGE_HAVOC]+0,
-stage_finds[STAGE_SPLICE],
-stage_finds[STAGE_TREE]+0);
-  write_to_stats(tmp);
-char tmp1[512];
-sprintf(tmp1,"%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",
-(double)(stage_finds[STAGE_FLIP1]+0)/(stage_cycles[STAGE_FLIP1]+1),
-(double)(stage_finds[STAGE_FLIP2]+0)/(stage_cycles[STAGE_FLIP2]+1),
-(double)(stage_finds[STAGE_FLIP4]+0)/(stage_cycles[STAGE_FLIP4]+1),
-(double)(stage_finds[STAGE_FLIP8]+0)/(stage_cycles[STAGE_FLIP8]+1),
-(double)(stage_finds[STAGE_FLIP16]+0)/(stage_cycles[STAGE_FLIP16]+1),
-(double)(stage_finds[STAGE_FLIP32]+0)/(stage_cycles[STAGE_FLIP32]+1),
-(double)(stage_finds[STAGE_ARITH8]+0)/(stage_cycles[STAGE_ARITH8]+1),
-(double)(stage_finds[STAGE_ARITH16]+0)/(stage_cycles[STAGE_ARITH16]+1),
-(double)(stage_finds[STAGE_ARITH32])/(stage_cycles[STAGE_ARITH32]+1),
-(double)(stage_finds[STAGE_INTEREST8]+0)/(stage_cycles[STAGE_INTEREST8]+1),
-(double)(stage_finds[STAGE_INTEREST16]+0)/(stage_cycles[STAGE_INTEREST16]+1),
-(double)(stage_finds[STAGE_INTEREST32]+0)/(stage_cycles[STAGE_INTEREST32]+1),
-(double)(stage_finds[STAGE_EXTRAS_UO]+0)/(stage_cycles[STAGE_EXTRAS_UO]+1),
-(double)(stage_finds[STAGE_EXTRAS_UI]+0)/(stage_cycles[STAGE_EXTRAS_UI]+1),
-(double)(stage_finds[STAGE_EXTRAS_AO]+0)/(stage_cycles[STAGE_EXTRAS_AO]+1),
-(double)(stage_finds[STAGE_EXTRAS_AO]+0)/(stage_cycles[STAGE_EXTRAS_AO]+1),
-(double)(stage_finds[STAGE_HAVOC]+0)/(stage_cycles[STAGE_HAVOC]+1),
-(double)(stage_finds[STAGE_SPLICE])/(stage_cycles[STAGE_SPLICE]+1),
-(double)(stage_finds[STAGE_TREE]+0)/(stage_cycles[STAGE_TREE]+1));
-  write_to_stats1(tmp1);*/
-//end of tree
   return ret_val;
 
 #undef FLIP_BIT
