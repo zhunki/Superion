@@ -60,7 +60,6 @@ public:
     ECMAScriptParser::SingleExpressionContext *sE=ctx->singleExpression();
     intervals.push_back(sE->getSourceInterval());
     texts.push_back(sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex())));
-    cout<<sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex()))<<endl;
     return visitChildren(ctx);
   }
 
@@ -276,7 +275,6 @@ public:
     ECMAScriptParser::SingleExpressionContext *sE=ctx->singleExpression()[1];
     intervals.push_back(sE->getSourceInterval());
     texts.push_back(sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex())));
-    cout<<sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex()))<<endl;
     return visitChildren(ctx);
   }
 

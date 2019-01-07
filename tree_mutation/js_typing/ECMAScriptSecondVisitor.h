@@ -57,7 +57,6 @@ public:
   virtual antlrcpp::Any visitInitialiser(ECMAScriptParser::InitialiserContext *ctx) override {
     ECMAScriptParser::SingleExpressionContext *sE=ctx->singleExpression();
     texts.push_back(sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex())));
-    cout<<sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex()))<<endl;
     return visitChildren(ctx);
   }
 
@@ -272,7 +271,6 @@ public:
   virtual antlrcpp::Any visitAssignmentExpression(ECMAScriptParser::AssignmentExpressionContext *ctx) override {
     ECMAScriptParser::SingleExpressionContext *sE=ctx->singleExpression()[1];
     texts.push_back(sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex())));
-    cout<<sE->start->getInputStream()->getText(misc::Interval(sE->start->getStartIndex(),sE->stop->getStopIndex()))<<endl;
     return visitChildren(ctx);
   }
 

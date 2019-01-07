@@ -20,11 +20,13 @@ string ret[MAXSAMPLES+2];
 
 bool cmp(const string &x, const string &y){return x<y;}
 
+vector<string> texts;
+
 int parse(char* target,size_t len,char* second,size_t lenS) {
 	vector<misc::Interval> intervals;
     intervals.clear();
-	vector<string> texts;
-    texts.clear();
+    std::cerr<<"Size of text:"<<texts.size()<<endl;
+
 	int num_of_smaples=0;
 	//parse the target
 	string targetString;
