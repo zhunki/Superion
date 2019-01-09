@@ -111,6 +111,9 @@ python ./tools/build.py --clean --debug --compile-flag=-fsanitize=address --comp
 ## Fuzzing PhP:
 ```
 wget https://github.com/php/php-src/archive/master.zip
+export CC=~/path_to_Superion/afl-gcc
+export CXX=~/path_to_Superion/afl-g++
+export AFL_HARDEN=1
 ./buildconf
 ./configure
 make
@@ -133,4 +136,9 @@ sudo apt-get install libxml2-dev
 configure: error: Please reinstall the sqlite distribution from http://www.sqlite.org
 sudo apt-get install sqlite
 sudo apt-get install libsqlite3-dev
+
+./afl-fuzz -M f1 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f2 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f3 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f4 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
 ```
