@@ -21,3 +21,5 @@ tree_mutation/dist/
 *.includecache
 *.internal
 
+tree_mutation/js_parser/libTreeMutation
+tree_mutation/js_typing/libTreeMutation

@@ -1,5 +1,5 @@
 
-// Generated from E:\Dropbox\fuzzing\jsparser\ECMAScript.g4 by ANTLR 4.7
+// Generated from C:\Users\xiang\Documents\GitHub\js_parser\ECMAScript.g4 by ANTLR 4.7
 
 #pragma once
 
@@ -21,8 +21,8 @@ public:
   vector<string> texts;
 
   virtual antlrcpp::Any visitProgram(ECMAScriptParser::ProgramContext *ctx) override {
-    //intervals.push_back(ctx->getSourceInterval());
-    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    intervals.push_back(ctx->getSourceInterval());
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
@@ -81,8 +81,8 @@ public:
   }
 
   virtual antlrcpp::Any visitEmptyStatement(ECMAScriptParser::EmptyStatementContext *ctx) override {
-    //intervals.push_back(ctx->getSourceInterval());
-    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    intervals.push_back(ctx->getSourceInterval());
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 

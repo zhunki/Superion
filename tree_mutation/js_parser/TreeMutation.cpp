@@ -122,22 +122,31 @@ int main(){
   	ifstream in;
 	char target[100*1024];
 	int len=0;
-  	in.open("/home/b/test_out/f3/queue/id:000001,orig:0b39e4bd-7603-11e8-a804-a157b68beb8f.js");
+  	in.open("/home/b/Superion/tree_mutation/js_parser/test.js");
 	while(!in.eof()){
 		in.read(target,102400);
 	}
 	len=in.gcount();
-	cout<<target<<endl;
-	cout<<len<<endl;
-  	char second[]="var y=Number(20);\n";
-  	int lenS=sizeof(second);
-	cout<<lenS<<endl;
+	//cout<<target<<endl;
+	//cout<<len<<endl;
+	in.close();
+
+	char second[100*1024];
+	int lenS=0;
+  	in.open("/home/b/Superion/tree_mutation/js_parser/test2.js");
+	while(!in.eof()){
+		in.read(second,102400);
+	}
+	lenS=in.gcount();
+	//cout<<second<<endl;
+	//cout<<lenS<<endl;
+
   	int num_of_smaples=parse(target,len,second,lenS);
   	for(int i=0;i<num_of_smaples;i++){
      	char* retbuf=nullptr;
      	size_t retlen=0;
      	fuzz(i,&retbuf,&retlen);
-     	cout<<retlen<<retbuf<<endl;
+     	//cout<<retlen<<retbuf<<endl;
   	}
   	cout<<"num_of_smaples:"<<num_of_smaples<<endl;
 }

@@ -1,7 +1,8 @@
 
-// Generated from E:\Dropbox\fuzzing\jsparser\ECMAScript.g4 by ANTLR 4.7
+// Generated from C:\Users\xiang\Documents\GitHub\js_parser\ECMAScript.g4 by ANTLR 4.7
 
 #pragma once
+
 
 #include "antlr4-runtime.h"
 
@@ -25,14 +26,14 @@ public:
     BitOrAssign = 50, NullLiteral = 51, BooleanLiteral = 52, DecimalLiteral = 53, 
     HexIntegerLiteral = 54, OctalIntegerLiteral = 55, Break = 56, Do = 57, 
     Instanceof = 58, Typeof = 59, Case = 60, Else = 61, New = 62, Var = 63, 
-    Catch = 64, Finally = 65, Return = 66, Void = 67, Continue = 68, For = 69, 
-    Switch = 70, While = 71, Debugger = 72, Function = 73, This = 74, With = 75, 
-    Default = 76, If = 77, Throw = 78, Delete = 79, In = 80, Try = 81, Class = 82, 
-    Enum = 83, Extends = 84, Super = 85, Const = 86, Export = 87, Import = 88, 
-    Implements = 89, Let = 90, Private = 91, Public = 92, Interface = 93, 
-    Package = 94, Protected = 95, Static = 96, Yield = 97, Identifier = 98, 
-    StringLiteral = 99, WhiteSpaces = 100, MultiLineComment = 101, SingleLineComment = 102, 
-    HtmlComment = 103, UnexpectedCharacter = 104
+    Let = 64, Catch = 65, Finally = 66, Return = 67, Void = 68, Continue = 69, 
+    For = 70, Switch = 71, While = 72, Debugger = 73, Function = 74, This = 75, 
+    With = 76, Default = 77, If = 78, Throw = 79, Delete = 80, In = 81, 
+    Try = 82, Class = 83, Enum = 84, Extends = 85, Super = 86, Const = 87, 
+    Export = 88, Import = 89, Implements = 90, Private = 91, Public = 92, 
+    Interface = 93, Package = 94, Protected = 95, Static = 96, Yield = 97, 
+    Identifier = 98, StringLiteral = 99, WhiteSpaces = 100, MultiLineComment = 101, 
+    SingleLineComment = 102, HtmlComment = 103, UnexpectedCharacter = 104
   };
 
   enum {
@@ -64,6 +65,8 @@ public:
   virtual const std::vector<std::string>& getRuleNames() const override;
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
+
+    
       bool here(size_t type) {
 
           // Get the token ahead of the current index.
@@ -104,7 +107,7 @@ public:
           // Check if the token is, or contains a line terminator.
           return (type == MultiLineComment && (text.find("\r") || text.find("\n"))) ||
                   (type == LineTerminator);
-      }                                
+      }                                       
 
 
   class ProgramContext;
@@ -260,6 +263,7 @@ public:
     antlr4::tree::TerminalNode *Var();
     VariableDeclarationListContext *variableDeclarationList();
     EosContext *eos();
+    antlr4::tree::TerminalNode *Let();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -381,6 +385,7 @@ public:
     StatementContext *statement();
     std::vector<ExpressionSequenceContext *> expressionSequence();
     ExpressionSequenceContext* expressionSequence(size_t i);
+    antlr4::tree::TerminalNode *Let();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -394,6 +399,7 @@ public:
     antlr4::tree::TerminalNode *In();
     ExpressionSequenceContext *expressionSequence();
     StatementContext *statement();
+    antlr4::tree::TerminalNode *Let();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -1270,6 +1276,7 @@ public:
     antlr4::tree::TerminalNode *Else();
     antlr4::tree::TerminalNode *New();
     antlr4::tree::TerminalNode *Var();
+    antlr4::tree::TerminalNode *Let();
     antlr4::tree::TerminalNode *Catch();
     antlr4::tree::TerminalNode *Finally();
     antlr4::tree::TerminalNode *Return();
@@ -1307,7 +1314,6 @@ public:
     antlr4::tree::TerminalNode *Export();
     antlr4::tree::TerminalNode *Import();
     antlr4::tree::TerminalNode *Implements();
-    antlr4::tree::TerminalNode *Let();
     antlr4::tree::TerminalNode *Private();
     antlr4::tree::TerminalNode *Public();
     antlr4::tree::TerminalNode *Interface();

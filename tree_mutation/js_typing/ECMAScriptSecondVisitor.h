@@ -1,5 +1,5 @@
 
-// Generated from E:\Dropbox\fuzzing\jsparser\ECMAScript.g4 by ANTLR 4.7
+// Generated from C:\Users\xiang\Documents\GitHub\js_parser\ECMAScript.g4 by ANTLR 4.7
 
 #pragma once
 
@@ -7,7 +7,6 @@
 #include <vector>
 #include "antlr4-runtime.h"
 #include "ECMAScriptVisitor.h"
-
 using namespace std;
 
 /**
@@ -413,4 +412,7 @@ public:
   virtual antlrcpp::Any visitEof(ECMAScriptParser::EofContext *ctx) override {
     return visitChildren(ctx);
   }
+
+
 };
+

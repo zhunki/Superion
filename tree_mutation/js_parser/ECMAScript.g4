@@ -231,6 +231,7 @@ statementList
 ///     var VariableDeclarationList ;
 variableStatement
  : Var variableDeclarationList eos
+ | Let variableDeclarationList eos
  ;
 
 /// VariableDeclarationList :
@@ -283,8 +284,10 @@ iterationStatement
  | While '(' expressionSequence ')' statement                                                        # WhileStatement
  | For '(' expressionSequence? ';' expressionSequence? ';' expressionSequence? ')' statement         # ForStatement
  | For '(' Var variableDeclarationList ';' expressionSequence? ';' expressionSequence? ')' statement # ForVarStatement
+ | For '(' Let variableDeclarationList ';' expressionSequence? ';' expressionSequence? ')' statement # ForVarStatement
  | For '(' singleExpression In expressionSequence ')' statement                                      # ForInStatement
  | For '(' Var variableDeclaration In expressionSequence ')' statement                               # ForVarInStatement
+ | For '(' Let variableDeclaration In expressionSequence ')' statement                               # ForVarInStatement
  ;
 
 /// ContinueStatement :
@@ -694,6 +697,7 @@ keyword
  | Else
  | New
  | Var
+ | Let
  | Catch
  | Finally
  | Return
@@ -723,7 +727,6 @@ futureReservedWord
  | Export
  | Import
  | Implements
- | Let
  | Private
  | Public
  | Interface
@@ -848,6 +851,7 @@ Case       : 'case';
 Else       : 'else';
 New        : 'new';
 Var        : 'var';
+Let        : 'let';
 Catch      : 'catch';
 Finally    : 'finally';
 Return     : 'return';
@@ -878,15 +882,14 @@ Import  : 'import';
 
 /// The following tokens are also considered to be FutureReservedWords 
 /// when parsing strict mode  
-Implements : {strictMode}? 'implements';
-Let        : {strictMode}? 'let';
-Private    : {strictMode}? 'private';
-Public     : {strictMode}? 'public';
-Interface  : {strictMode}? 'interface';
-Package    : {strictMode}? 'package';
-Protected  : {strictMode}? 'protected';
-Static     : {strictMode}? 'static';
-Yield      : {strictMode}? 'yield';
+Implements : 'implements';
+Private    : 'private';
+Public     : 'public';
+Interface  : 'interface';
+Package    : 'package';
+Protected  : 'protected';
+Static     : 'static';
+Yield      : 'yield';
 
 /// 7.6 Identifier Names and Identifiers
 Identifier

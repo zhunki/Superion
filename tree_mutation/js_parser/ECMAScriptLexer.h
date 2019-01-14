@@ -1,5 +1,5 @@
 
-// Generated from E:\Dropbox\fuzzing\jsparser\ECMAScript.g4 by ANTLR 4.7
+// Generated from C:\Users\xiang\Documents\GitHub\js_parser\ECMAScript.g4 by ANTLR 4.7
 
 #pragma once
 
@@ -26,14 +26,14 @@ public:
     BitOrAssign = 50, NullLiteral = 51, BooleanLiteral = 52, DecimalLiteral = 53, 
     HexIntegerLiteral = 54, OctalIntegerLiteral = 55, Break = 56, Do = 57, 
     Instanceof = 58, Typeof = 59, Case = 60, Else = 61, New = 62, Var = 63, 
-    Catch = 64, Finally = 65, Return = 66, Void = 67, Continue = 68, For = 69, 
-    Switch = 70, While = 71, Debugger = 72, Function = 73, This = 74, With = 75, 
-    Default = 76, If = 77, Throw = 78, Delete = 79, In = 80, Try = 81, Class = 82, 
-    Enum = 83, Extends = 84, Super = 85, Const = 86, Export = 87, Import = 88, 
-    Implements = 89, Let = 90, Private = 91, Public = 92, Interface = 93, 
-    Package = 94, Protected = 95, Static = 96, Yield = 97, Identifier = 98, 
-    StringLiteral = 99, WhiteSpaces = 100, MultiLineComment = 101, SingleLineComment = 102, 
-    HtmlComment = 103, UnexpectedCharacter = 104
+    Let = 64, Catch = 65, Finally = 66, Return = 67, Void = 68, Continue = 69, 
+    For = 70, Switch = 71, While = 72, Debugger = 73, Function = 74, This = 75, 
+    With = 76, Default = 77, If = 78, Throw = 79, Delete = 80, In = 81, 
+    Try = 82, Class = 83, Enum = 84, Extends = 85, Super = 86, Const = 87, 
+    Export = 88, Import = 89, Implements = 90, Private = 91, Public = 92, 
+    Interface = 93, Package = 94, Protected = 95, Static = 96, Yield = 97, 
+    Identifier = 98, StringLiteral = 99, WhiteSpaces = 100, MultiLineComment = 101, 
+    SingleLineComment = 102, HtmlComment = 103, UnexpectedCharacter = 104
   };
 
   ECMAScriptLexer(antlr4::CharStream *input);
@@ -118,6 +118,7 @@ public:
           }
       }
 
+
   virtual std::string getGrammarFileName() const override;
   virtual const std::vector<std::string>& getRuleNames() const override;
 
@@ -151,15 +152,6 @@ private:
   // Individual semantic predicate functions triggered by sempred() above.
   bool RegularExpressionLiteralSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
   bool OctalIntegerLiteralSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool ImplementsSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool LetSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool PrivateSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool PublicSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool InterfaceSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool PackageSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool ProtectedSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool StaticSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
-  bool YieldSempred(antlr4::RuleContext *_localctx, size_t predicateIndex);
 
   struct Initializer {
     Initializer();

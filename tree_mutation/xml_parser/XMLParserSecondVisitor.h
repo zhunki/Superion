@@ -9,6 +9,7 @@
 #include "XMLParserVisitor.h"
 
 using namespace std;
+using namespace antlr4;
 
 /**
  * This class provides an empty implementation of XMLParserVisitor, which can be
