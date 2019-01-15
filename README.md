@@ -107,3 +107,38 @@ python ./tools/build.py --clean --debug --compile-flag=-fsanitize=address --comp
 ./afl-fuzz -S f2 -t 40+ -m 2000 -i ~/jerry_seeds/ -o ~/jerry_out/ ~/jerryscript/build/bin/jerry @@
 ./afl-fuzz -S f3 -t 40+ -m 2000 -i ~/jerry_seeds/ -o ~/jerry_out/ ~/jerryscript/build/bin/jerry @@
 ```
+
+## Fuzzing PhP:
+```
+wget https://github.com/php/php-src/archive/master.zip
+export CC=~/path_to_Superion/afl-gcc
+export CXX=~/path_to_Superion/afl-g++
+export AFL_HARDEN=1
+./buildconf
+./configure
+make
+
+configure: error: You will need re2c 0.13.4 or later to generate PHP lexers.
+download re2c-1.0.1.tar.gz
+cd re2c-1.0.1
+./configure
+make install
+
+configure: error: bison is required to build PHP/Zend when building a GIT checkout!
+download bison-3.2.tar.gz
+cd bison-3.2
+./configure
+make install
+
+configure: error: libxml2 not found. Please check your libxml2 installation.
+sudo apt-get install libxml2-dev
+
+configure: error: Please reinstall the sqlite distribution from http://www.sqlite.org
+sudo apt-get install sqlite
+sudo apt-get install libsqlite3-dev
+
+./afl-fuzz -M f1 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f2 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f3 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+./afl-fuzz -S f4 -m 1G -t 100+ -i ~/phpseeds/ -o ~/phpout/ ~/php-src-master/sapi/cli/php @@
+```

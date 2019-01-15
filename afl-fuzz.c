@@ -2406,11 +2406,12 @@ static u8 run_target(char** argv, u32 timeout) {
     s32 res;
 
     if ((res = read(fsrv_st_fd, &status, 4)) != 4) {
+
       if (stop_soon) return 0;
       RPFATAL(res, "Unable to communicate with fork server (OOM?)");
 
     }
-    
+
   }
 
   if (!WIFSTOPPED(status)) child_pid = 0;
@@ -2464,7 +2465,6 @@ static u8 run_target(char** argv, u32 timeout) {
   return FAULT_NONE;
 
 }
-
 
 /* Write modified data to file for testing. If out_file is set, the old file
    is unlinked and a new one is created. Otherwise, out_fd is rewound and
@@ -4467,6 +4467,7 @@ static u32 next_p2(u32 val) {
 
 static u8 trim_case(char** argv, struct queue_entry* q, u8* in_buf) {
   return 0;
+  
   static u8 tmp[64];
   static u8 clean_trace[MAP_SIZE];
 
@@ -6153,7 +6154,7 @@ retry_external_pick:
    ****************/
   ret_val = 0;
   goto abandon_entry;
-
+  
 havoc_stage:
 
   stage_cur_byte = -1;
@@ -6721,54 +6722,6 @@ abandon_entry:
   ck_free(out_buf);
   ck_free(eff_map);
 
-//tree
-
-/*
-char tmp[512];
-sprintf(tmp,"%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld,%lld\n",
-stage_finds[STAGE_FLIP1]+0,
-stage_finds[STAGE_FLIP2]+0,
-stage_finds[STAGE_FLIP4]+0,
-stage_finds[STAGE_FLIP8]+0,
-stage_finds[STAGE_FLIP16]+0,
-stage_finds[STAGE_FLIP32]+0,
-stage_finds[STAGE_ARITH8]+0,
-stage_finds[STAGE_ARITH16]+0,
-stage_finds[STAGE_ARITH32],
-stage_finds[STAGE_INTEREST8]+0,
-stage_finds[STAGE_INTEREST16]+0,
-stage_finds[STAGE_INTEREST32]+0,
-stage_finds[STAGE_EXTRAS_UO]+0,
-stage_finds[STAGE_EXTRAS_UI]+0,
-stage_finds[STAGE_EXTRAS_AO]+0,
-stage_finds[STAGE_EXTRAS_AO]+0,
-stage_finds[STAGE_HAVOC]+0,
-stage_finds[STAGE_SPLICE],
-stage_finds[STAGE_TREE]+0);
-  write_to_stats(tmp);
-char tmp1[512];
-sprintf(tmp1,"%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f,%.6f\n",
-(double)(stage_finds[STAGE_FLIP1]+0)/(stage_cycles[STAGE_FLIP1]+1),
-(double)(stage_finds[STAGE_FLIP2]+0)/(stage_cycles[STAGE_FLIP2]+1),
-(double)(stage_finds[STAGE_FLIP4]+0)/(stage_cycles[STAGE_FLIP4]+1),
-(double)(stage_finds[STAGE_FLIP8]+0)/(stage_cycles[STAGE_FLIP8]+1),
-(double)(stage_finds[STAGE_FLIP16]+0)/(stage_cycles[STAGE_FLIP16]+1),
-(double)(stage_finds[STAGE_FLIP32]+0)/(stage_cycles[STAGE_FLIP32]+1),
-(double)(stage_finds[STAGE_ARITH8]+0)/(stage_cycles[STAGE_ARITH8]+1),
-(double)(stage_finds[STAGE_ARITH16]+0)/(stage_cycles[STAGE_ARITH16]+1),
-(double)(stage_finds[STAGE_ARITH32])/(stage_cycles[STAGE_ARITH32]+1),
-(double)(stage_finds[STAGE_INTEREST8]+0)/(stage_cycles[STAGE_INTEREST8]+1),
-(double)(stage_finds[STAGE_INTEREST16]+0)/(stage_cycles[STAGE_INTEREST16]+1),
-(double)(stage_finds[STAGE_INTEREST32]+0)/(stage_cycles[STAGE_INTEREST32]+1),
-(double)(stage_finds[STAGE_EXTRAS_UO]+0)/(stage_cycles[STAGE_EXTRAS_UO]+1),
-(double)(stage_finds[STAGE_EXTRAS_UI]+0)/(stage_cycles[STAGE_EXTRAS_UI]+1),
-(double)(stage_finds[STAGE_EXTRAS_AO]+0)/(stage_cycles[STAGE_EXTRAS_AO]+1),
-(double)(stage_finds[STAGE_EXTRAS_AO]+0)/(stage_cycles[STAGE_EXTRAS_AO]+1),
-(double)(stage_finds[STAGE_HAVOC]+0)/(stage_cycles[STAGE_HAVOC]+1),
-(double)(stage_finds[STAGE_SPLICE])/(stage_cycles[STAGE_SPLICE]+1),
-(double)(stage_finds[STAGE_TREE]+0)/(stage_cycles[STAGE_TREE]+1));
-  write_to_stats1(tmp1);*/
-//end of tree
   return ret_val;
 
 #undef FLIP_BIT
