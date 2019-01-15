@@ -20,56 +20,56 @@ public:
   vector<string> texts;
 
   virtual antlrcpp::Any visitProgram(ECMAScriptParser::ProgramContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitSourceElements(ECMAScriptParser::SourceElementsContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitSourceElement(ECMAScriptParser::SourceElementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitStatement(ECMAScriptParser::StatementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitBlock(ECMAScriptParser::BlockContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitStatementList(ECMAScriptParser::StatementListContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitVariableStatement(ECMAScriptParser::VariableStatementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitVariableDeclarationList(ECMAScriptParser::VariableDeclarationListContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitVariableDeclaration(ECMAScriptParser::VariableDeclarationContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
@@ -80,14 +80,14 @@ public:
   }
 
   virtual antlrcpp::Any visitEmptyStatement(ECMAScriptParser::EmptyStatementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitExpressionStatement(ECMAScriptParser::ExpressionStatementContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
@@ -236,8 +236,8 @@ public:
   }
 
   virtual antlrcpp::Any visitFunctionDeclaration(ECMAScriptParser::FunctionDeclarationContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
@@ -614,8 +614,8 @@ public:
   }
 
   virtual antlrcpp::Any visitEof(ECMAScriptParser::EofContext *ctx) override {
-    intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    //intervals.push_back(ctx->getSourceInterval());
+    //texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);
   }
 
