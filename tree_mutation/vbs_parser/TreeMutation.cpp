@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstring>
 #include "antlr4-runtime.h"
-#include "ECMAScriptLexer.h"
-#include "ECMAScriptParser.h"
-#include "ECMAScriptBaseVisitor.h"
-#include "ECMAScriptSecondVisitor.h"
+#include "VisualBasic6Lexer.h"
+#include "VisualBasic6Parser.h"
+#include "VisualBasic6BaseVisitor.h"
+#include "VisualBasic6SecondVisitor.h"
 
 using namespace antlr4;
 using namespace std;
@@ -21,7 +21,7 @@ string ret[MAXSAMPLES+2];
 bool cmp(const string &x, const string &y){return x<y;}
 
 int parse(char* target,size_t len,char* second,size_t lenS) {
-	vector<misc::Interval> intervals;
+    vector<misc::Interval> intervals;
     intervals.clear();
 	vector<string> texts;
     texts.clear();
@@ -32,22 +32,22 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 		targetString=string(target,len);
 		ANTLRInputStream input(targetString);
 		//ANTLRInputStream input(target);
-		ECMAScriptLexer lexer(&input);
+		VisualBasic6Lexer lexer(&input);
 		CommonTokenStream tokens(&lexer);
-		ECMAScriptParser parser(&tokens);
+		VisualBasic6Parser parser(&tokens);
 		TokenStreamRewriter rewriter(&tokens);
-		tree::ParseTree* tree = parser.program();
+		tree::ParseTree* tree = parser.startRule();
 		if(parser.getNumberOfSyntaxErrors()>0){
-			//std::cerr<<"NumberOfSyntaxErrors:"<<parser.getNumberOfSyntaxErrors()<<endl;
+			std::cerr<<"NumberOfSyntaxErrors:"<<parser.getNumberOfSyntaxErrors()<<endl;
 			return 0;
 		}else{
- 			ECMAScriptBaseVisitor *visitor=new ECMAScriptBaseVisitor();
+ 			VisualBasic6BaseVisitor *visitor=new VisualBasic6BaseVisitor();
 			visitor->visit(tree);
 
 			int interval_size = visitor->intervals.size();
 			for(int i=0;i<interval_size;i++){
 				if(find(intervals.begin(),intervals.end(),visitor->intervals[i])!=intervals.end()){
-				}else if(visitor->intervals[i].a<=visitor->intervals[i].b){
+				}else if(visitor->intervals[i].a<visitor->intervals[i].b){
 					intervals.push_back(visitor->intervals[i]);	
 				}
 			}
@@ -57,9 +57,9 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 				}else if(visitor->texts[i].length()>MAXTEXT){
 				}else{
 					texts.push_back(visitor->texts[i]);
-            			}
+            	}
 			}
-            		delete visitor;
+            delete visitor;
 			//parse sencond
 			string secondString;
 			try{
@@ -68,25 +68,25 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 				//cout<<secondString<<endl;
 
 				ANTLRInputStream inputS(secondString);
-				ECMAScriptLexer lexerS(&inputS);
+				VisualBasic6Lexer lexerS(&inputS);
 				CommonTokenStream tokensS(&lexerS);
-				ECMAScriptParser parserS(&tokensS);
-				tree::ParseTree* treeS = parserS.program();
+				VisualBasic6Parser parserS(&tokensS);
+				tree::ParseTree* treeS = parserS.startRule();
 
 				if(parserS.getNumberOfSyntaxErrors()>0){
 		 			//std::cerr<<"NumberOfSyntaxErrors S:"<<parserS.getNumberOfSyntaxErrors()<<endl;
 				}else{
-					ECMAScriptSecondVisitor *visitorS=new ECMAScriptSecondVisitor();
+					VisualBasic6SecondVisitor *visitorS=new VisualBasic6SecondVisitor();
 					visitorS->visit(treeS);
 					texts_size = visitorS->texts.size();
 					for(int i=0;i<texts_size;i++){
 						if(find(texts.begin(),texts.end(),visitorS->texts[i])!=texts.end()){
-                        			}else if(visitorS->texts[i].length()>MAXTEXT){
+                        }else if(visitorS->texts[i].length()>MAXTEXT){
 						}else{
 							texts.push_back(visitorS->texts[i]);
 						}
 					}
-                    		delete visitorS;
+                    delete visitorS;
 				}
 
 				interval_size = intervals.size();
@@ -122,31 +122,22 @@ int main(){
   	ifstream in;
 	char target[100*1024];
 	int len=0;
-  	in.open("/home/b/Superion/tree_mutation/js_parser/test.js");
+  	in.open("/home/codesafe/test.vbs");
 	while(!in.eof()){
 		in.read(target,102400);
 	}
 	len=in.gcount();
-	//cout<<target<<endl;
-	//cout<<len<<endl;
-	in.close();
-
-	char second[100*1024];
-	int lenS=0;
-  	in.open("/home/b/Superion/tree_mutation/js_parser/test2.js");
-	while(!in.eof()){
-		in.read(second,102400);
-	}
-	lenS=in.gcount();
-	//cout<<second<<endl;
-	//cout<<lenS<<endl;
-
+	cout<<target<<endl;
+	cout<<len<<endl;
+  	char second[]="i=0\n";
+  	int lenS=sizeof(second);
+	cout<<lenS<<endl;
   	int num_of_smaples=parse(target,len,second,lenS);
   	for(int i=0;i<num_of_smaples;i++){
      	char* retbuf=nullptr;
      	size_t retlen=0;
      	fuzz(i,&retbuf,&retlen);
-     	//cout<<retlen<<retbuf<<endl;
+     	cout<<retlen<<retbuf<<endl;
   	}
   	cout<<"num_of_smaples:"<<num_of_smaples<<endl;
 }

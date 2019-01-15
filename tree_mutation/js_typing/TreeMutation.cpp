@@ -47,7 +47,7 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 			int interval_size = visitor->intervals.size();
 			for(int i=0;i<interval_size;i++){
 				if(find(intervals.begin(),intervals.end(),visitor->intervals[i])!=intervals.end()){
-				}else if(visitor->intervals[i].a<visitor->intervals[i].b){
+				}else if(visitor->intervals[i].a<=visitor->intervals[i].b){
 					intervals.push_back(visitor->intervals[i]);	
 				}
 			}
@@ -57,9 +57,9 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 				}else if(visitor->texts[i].length()>MAXTEXT){
 				}else{
 					texts.push_back(visitor->texts[i]);
-            	}
+            			}
 			}
-            delete visitor;
+            		delete visitor;
 			//parse sencond
 			string secondString;
 			try{
@@ -81,12 +81,12 @@ int parse(char* target,size_t len,char* second,size_t lenS) {
 					texts_size = visitorS->texts.size();
 					for(int i=0;i<texts_size;i++){
 						if(find(texts.begin(),texts.end(),visitorS->texts[i])!=texts.end()){
-                        }else if(visitorS->texts[i].length()>MAXTEXT){
+                        			}else if(visitorS->texts[i].length()>MAXTEXT){
 						}else{
 							texts.push_back(visitorS->texts[i]);
 						}
 					}
-                    delete visitorS;
+                    		delete visitorS;
 				}
 
 				interval_size = intervals.size();

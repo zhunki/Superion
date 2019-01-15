@@ -9,7 +9,6 @@
 #include "XMLParserVisitor.h"
 
 using namespace std;
-using namespace antlr4;
 
 /**
  * This class provides an empty implementation of XMLParserVisitor, which can be
@@ -20,42 +19,42 @@ public:
   vector<string> texts;
 
   virtual antlrcpp::Any visitDocument(XMLParser::DocumentContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitProlog(XMLParser::PrologContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitContent(XMLParser::ContentContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitElement(XMLParser::ElementContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitReference(XMLParser::ReferenceContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitAttribute(XMLParser::AttributeContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitChardata(XMLParser::ChardataContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitMisc(XMLParser::MiscContext *ctx) override {
-    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
     return visitChildren(ctx);
   }
 
