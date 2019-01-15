@@ -53,9 +53,13 @@ public:
 
     virtual antlrcpp::Any visitForVarStatement(ECMAScriptParser::ForVarStatementContext *context) = 0;
 
+    virtual antlrcpp::Any visitForLetStatement(ECMAScriptParser::ForLetStatementContext *context) = 0;
+
     virtual antlrcpp::Any visitForInStatement(ECMAScriptParser::ForInStatementContext *context) = 0;
 
     virtual antlrcpp::Any visitForVarInStatement(ECMAScriptParser::ForVarInStatementContext *context) = 0;
+
+    virtual antlrcpp::Any visitForLetInStatement(ECMAScriptParser::ForLetInStatementContext *context) = 0;
 
     virtual antlrcpp::Any visitContinueStatement(ECMAScriptParser::ContinueStatementContext *context) = 0;
 

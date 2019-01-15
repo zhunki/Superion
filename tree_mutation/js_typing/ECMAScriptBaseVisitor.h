@@ -16,7 +16,6 @@ using namespace std;
  */
 class  ECMAScriptBaseVisitor : public ECMAScriptVisitor {
 public:
-
   vector<misc::Interval> intervals;
   vector<string> texts;
 
@@ -91,11 +90,19 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitForLetStatement(ECMAScriptParser::ForLetStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitForInStatement(ECMAScriptParser::ForInStatementContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitForVarInStatement(ECMAScriptParser::ForVarInStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitForLetInStatement(ECMAScriptParser::ForLetInStatementContext *ctx) override {
     return visitChildren(ctx);
   }
 

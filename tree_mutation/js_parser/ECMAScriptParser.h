@@ -385,7 +385,6 @@ public:
     StatementContext *statement();
     std::vector<ExpressionSequenceContext *> expressionSequence();
     ExpressionSequenceContext* expressionSequence(size_t i);
-    antlr4::tree::TerminalNode *Let();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -399,7 +398,32 @@ public:
     antlr4::tree::TerminalNode *In();
     ExpressionSequenceContext *expressionSequence();
     StatementContext *statement();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ForLetInStatementContext : public IterationStatementContext {
+  public:
+    ForLetInStatementContext(IterationStatementContext *ctx);
+
+    antlr4::tree::TerminalNode *For();
     antlr4::tree::TerminalNode *Let();
+    VariableDeclarationContext *variableDeclaration();
+    antlr4::tree::TerminalNode *In();
+    ExpressionSequenceContext *expressionSequence();
+    StatementContext *statement();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ForLetStatementContext : public IterationStatementContext {
+  public:
+    ForLetStatementContext(IterationStatementContext *ctx);
+
+    antlr4::tree::TerminalNode *For();
+    antlr4::tree::TerminalNode *Let();
+    VariableDeclarationListContext *variableDeclarationList();
+    StatementContext *statement();
+    std::vector<ExpressionSequenceContext *> expressionSequence();
+    ExpressionSequenceContext* expressionSequence(size_t i);
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 

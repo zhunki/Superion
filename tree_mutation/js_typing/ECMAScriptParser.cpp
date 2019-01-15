@@ -1044,10 +1044,6 @@ ECMAScriptParser::ExpressionSequenceContext* ECMAScriptParser::ForVarStatementCo
   return getRuleContext<ECMAScriptParser::ExpressionSequenceContext>(i);
 }
 
-tree::TerminalNode* ECMAScriptParser::ForVarStatementContext::Let() {
-  return getToken(ECMAScriptParser::Let, 0);
-}
-
 ECMAScriptParser::ForVarStatementContext::ForVarStatementContext(IterationStatementContext *ctx) { copyFrom(ctx); }
 
 antlrcpp::Any ECMAScriptParser::ForVarStatementContext::accept(tree::ParseTreeVisitor *visitor) {
@@ -1082,15 +1078,79 @@ ECMAScriptParser::StatementContext* ECMAScriptParser::ForVarInStatementContext::
   return getRuleContext<ECMAScriptParser::StatementContext>(0);
 }
 
-tree::TerminalNode* ECMAScriptParser::ForVarInStatementContext::Let() {
-  return getToken(ECMAScriptParser::Let, 0);
-}
-
 ECMAScriptParser::ForVarInStatementContext::ForVarInStatementContext(IterationStatementContext *ctx) { copyFrom(ctx); }
 
 antlrcpp::Any ECMAScriptParser::ForVarInStatementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<ECMAScriptVisitor*>(visitor))
     return parserVisitor->visitForVarInStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- ForLetInStatementContext ------------------------------------------------------------------
+
+tree::TerminalNode* ECMAScriptParser::ForLetInStatementContext::For() {
+  return getToken(ECMAScriptParser::For, 0);
+}
+
+tree::TerminalNode* ECMAScriptParser::ForLetInStatementContext::Let() {
+  return getToken(ECMAScriptParser::Let, 0);
+}
+
+ECMAScriptParser::VariableDeclarationContext* ECMAScriptParser::ForLetInStatementContext::variableDeclaration() {
+  return getRuleContext<ECMAScriptParser::VariableDeclarationContext>(0);
+}
+
+tree::TerminalNode* ECMAScriptParser::ForLetInStatementContext::In() {
+  return getToken(ECMAScriptParser::In, 0);
+}
+
+ECMAScriptParser::ExpressionSequenceContext* ECMAScriptParser::ForLetInStatementContext::expressionSequence() {
+  return getRuleContext<ECMAScriptParser::ExpressionSequenceContext>(0);
+}
+
+ECMAScriptParser::StatementContext* ECMAScriptParser::ForLetInStatementContext::statement() {
+  return getRuleContext<ECMAScriptParser::StatementContext>(0);
+}
+
+ECMAScriptParser::ForLetInStatementContext::ForLetInStatementContext(IterationStatementContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any ECMAScriptParser::ForLetInStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<ECMAScriptVisitor*>(visitor))
+    return parserVisitor->visitForLetInStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- ForLetStatementContext ------------------------------------------------------------------
+
+tree::TerminalNode* ECMAScriptParser::ForLetStatementContext::For() {
+  return getToken(ECMAScriptParser::For, 0);
+}
+
+tree::TerminalNode* ECMAScriptParser::ForLetStatementContext::Let() {
+  return getToken(ECMAScriptParser::Let, 0);
+}
+
+ECMAScriptParser::VariableDeclarationListContext* ECMAScriptParser::ForLetStatementContext::variableDeclarationList() {
+  return getRuleContext<ECMAScriptParser::VariableDeclarationListContext>(0);
+}
+
+ECMAScriptParser::StatementContext* ECMAScriptParser::ForLetStatementContext::statement() {
+  return getRuleContext<ECMAScriptParser::StatementContext>(0);
+}
+
+std::vector<ECMAScriptParser::ExpressionSequenceContext *> ECMAScriptParser::ForLetStatementContext::expressionSequence() {
+  return getRuleContexts<ECMAScriptParser::ExpressionSequenceContext>();
+}
+
+ECMAScriptParser::ExpressionSequenceContext* ECMAScriptParser::ForLetStatementContext::expressionSequence(size_t i) {
+  return getRuleContext<ECMAScriptParser::ExpressionSequenceContext>(i);
+}
+
+ECMAScriptParser::ForLetStatementContext::ForLetStatementContext(IterationStatementContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any ECMAScriptParser::ForLetStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<ECMAScriptVisitor*>(visitor))
+    return parserVisitor->visitForLetStatement(this);
   else
     return visitor->visitChildren(this);
 }
@@ -1416,7 +1476,7 @@ ECMAScriptParser::IterationStatementContext* ECMAScriptParser::iterationStatemen
     }
 
     case 5: {
-      _localctx = dynamic_cast<IterationStatementContext *>(_tracker.createInstance<ECMAScriptParser::ForVarStatementContext>(_localctx));
+      _localctx = dynamic_cast<IterationStatementContext *>(_tracker.createInstance<ECMAScriptParser::ForLetStatementContext>(_localctx));
       enterOuterAlt(_localctx, 5);
       setState(236);
       match(ECMAScriptParser::For);
@@ -1542,7 +1602,7 @@ ECMAScriptParser::IterationStatementContext* ECMAScriptParser::iterationStatemen
     }
 
     case 8: {
-      _localctx = dynamic_cast<IterationStatementContext *>(_tracker.createInstance<ECMAScriptParser::ForVarInStatementContext>(_localctx));
+      _localctx = dynamic_cast<IterationStatementContext *>(_tracker.createInstance<ECMAScriptParser::ForLetInStatementContext>(_localctx));
       enterOuterAlt(_localctx, 8);
       setState(268);
       match(ECMAScriptParser::For);

@@ -284,10 +284,10 @@ iterationStatement
  | While '(' expressionSequence ')' statement                                                        # WhileStatement
  | For '(' expressionSequence? ';' expressionSequence? ';' expressionSequence? ')' statement         # ForStatement
  | For '(' Var variableDeclarationList ';' expressionSequence? ';' expressionSequence? ')' statement # ForVarStatement
- | For '(' Let variableDeclarationList ';' expressionSequence? ';' expressionSequence? ')' statement # ForVarStatement
+ | For '(' Let variableDeclarationList ';' expressionSequence? ';' expressionSequence? ')' statement # ForLetStatement
  | For '(' singleExpression In expressionSequence ')' statement                                      # ForInStatement
  | For '(' Var variableDeclaration In expressionSequence ')' statement                               # ForVarInStatement
- | For '(' Let variableDeclaration In expressionSequence ')' statement                               # ForVarInStatement
+ | For '(' Let variableDeclaration In expressionSequence ')' statement                               # ForLetInStatement
  ;
 
 /// ContinueStatement :

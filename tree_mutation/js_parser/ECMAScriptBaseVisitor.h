@@ -16,7 +16,6 @@ using namespace std;
  */
 class  ECMAScriptBaseVisitor : public ECMAScriptVisitor {
 public:
-
   vector<misc::Interval> intervals;
   vector<string> texts;
 
@@ -122,6 +121,12 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitForLetStatement(ECMAScriptParser::ForLetStatementContext *ctx) override {
+    intervals.push_back(ctx->getSourceInterval());
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitForInStatement(ECMAScriptParser::ForInStatementContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
     texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
@@ -129,6 +134,12 @@ public:
   }
 
   virtual antlrcpp::Any visitForVarInStatement(ECMAScriptParser::ForVarInStatementContext *ctx) override {
+    intervals.push_back(ctx->getSourceInterval());
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitForLetInStatement(ECMAScriptParser::ForLetInStatementContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
     texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->start->getStartIndex(),ctx->stop->getStopIndex())));
     return visitChildren(ctx);

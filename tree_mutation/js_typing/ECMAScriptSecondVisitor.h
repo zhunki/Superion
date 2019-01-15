@@ -7,6 +7,7 @@
 #include <vector>
 #include "antlr4-runtime.h"
 #include "ECMAScriptVisitor.h"
+
 using namespace std;
 
 /**
@@ -87,11 +88,19 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitForLetStatement(ECMAScriptParser::ForLetStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitForInStatement(ECMAScriptParser::ForInStatementContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitForVarInStatement(ECMAScriptParser::ForVarInStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitForLetInStatement(ECMAScriptParser::ForLetInStatementContext *ctx) override {
     return visitChildren(ctx);
   }
 

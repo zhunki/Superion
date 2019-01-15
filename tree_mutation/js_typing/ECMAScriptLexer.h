@@ -41,7 +41,7 @@ public:
 
 
                    
-      // A flag indicating if the lexer should operate in strict mode.
+// A flag indicating if the lexer should operate in strict mode.
       // When set to true, FutureReservedWords are tokenized, when false,
       // an octal literal can be tokenized.
       bool strictMode = true;
@@ -117,7 +117,6 @@ public:
                   return true;
           }
       }
-
 
   virtual std::string getGrammarFileName() const override;
   virtual const std::vector<std::string>& getRuleNames() const override;
