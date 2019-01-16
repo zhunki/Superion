@@ -21,3 +21,7 @@ tree_mutation/runtime/Makefile
 tree_mutation/runtime/cmake_install.cmake
 
 
+afl-clang
+afl-clang++
+afl-g++
+as
