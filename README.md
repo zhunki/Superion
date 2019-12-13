@@ -6,7 +6,7 @@ Superion mainly adds a mutation strategy to AFL. The mutation strategy first par
 
 The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generate a parser given the grammar file. 
 
-Partial bugs found by Superion
+## Partial bugs found by Superion
 
 CVE-2019-1428: Microsoft Edge Scripting Engine Information Disclosure Vulnerability
 
