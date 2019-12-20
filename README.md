@@ -83,11 +83,11 @@ g++ -shared -std=c++11 *.o ../dist/libantlr4-runtime.a  -o libTreeMutation.so
 
 To compile afl-clang-fast and afl-clang-fast++, which are used to instrument fuzzing targets.
 ```
-cd /path_to_Superion/llvm_mode/
-LLVM_CONFIG=llvm-config-3.8 CXXFLAGS="-DLLVM38" make
-
 cd /path_to_Superion/
 make
+
+cd /path_to_Superion/llvm_mode/
+LLVM_CONFIG=llvm-config-3.8 CXXFLAGS="-DLLVM38" make
 ```
 
 ## Fuzzing WebKit
