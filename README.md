@@ -6,28 +6,6 @@ Superion mainly adds a mutation strategy to AFL. The mutation strategy first par
 
 The parsing ability of Superion is provided by ANTLR (https://www.antlr.org/), which can automatically generate a parser given the grammar file. 
 
-## Partial bugs found by Superion
-
-CVE-2019-1428: Microsoft Edge Scripting Engine Information Disclosure Vulnerability
-
-CVE-2019-5866: Incorrect heap object handling in V8
-
-CVE-2019-8743: Apple Safari Type Confusion Vulnerability
-
-CVE-2019-7292: Apple Safari Uninitialized Memory Access Vulnerability
-
-CVE-2019-0648: Microsoft Edge Scripting Engine Information Disclosure Vulnerability
-
-CVE-2018-4392: Apple Safari Heap-Buffer-Overflow RCE Vulnerability
-
-CVE-2018-4378: Apple Safari UAF RCE Vulnerability
-
-CVE-2017-7095: Apple Safari JSString Out-of-Bound Access RCE Vulnerability
-
-CVE-2017-7102: Apple Safari Baseline JIT eval() Type Confusion Vulnerability
-
-CVE-2017-7107: Apple Safari RegExpCachedResults Memory Corruption Vulnerability
-
 
 ## Building Superion
 
