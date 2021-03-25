@@ -1,5 +1,5 @@
 
-// Generated from E:\xml\XMLLexer.g4 by ANTLR 4.7
+// Generated from XMLLexer.g4 by ANTLR 4.7
 
 
 #include "XMLLexer.h"

@@ -1,7 +1,8 @@
 
-// Generated from E:\xml\XMLParser.g4 by ANTLR 4.7
+// Generated from XMLParser.g4 by ANTLR 4.7
 
 
+#include "XMLParserListener.h"
 #include "XMLParserVisitor.h"
 
 #include "XMLParser.h"
@@ -57,6 +58,19 @@ XMLParser::MiscContext* XMLParser::DocumentContext::misc(size_t i) {
 size_t XMLParser::DocumentContext::getRuleIndex() const {
   return XMLParser::RuleDocument;
 }
+
+void XMLParser::DocumentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDocument(this);
+}
+
+void XMLParser::DocumentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDocument(this);
+}
+
 
 antlrcpp::Any XMLParser::DocumentContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
@@ -148,6 +162,19 @@ XMLParser::AttributeContext* XMLParser::PrologContext::attribute(size_t i) {
 size_t XMLParser::PrologContext::getRuleIndex() const {
   return XMLParser::RuleProlog;
 }
+
+void XMLParser::PrologContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProlog(this);
+}
+
+void XMLParser::PrologContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProlog(this);
+}
+
 
 antlrcpp::Any XMLParser::PrologContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
@@ -249,6 +276,19 @@ tree::TerminalNode* XMLParser::ContentContext::COMMENT(size_t i) {
 size_t XMLParser::ContentContext::getRuleIndex() const {
   return XMLParser::RuleContent;
 }
+
+void XMLParser::ContentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterContent(this);
+}
+
+void XMLParser::ContentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitContent(this);
+}
+
 
 antlrcpp::Any XMLParser::ContentContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
@@ -377,6 +417,19 @@ size_t XMLParser::ElementContext::getRuleIndex() const {
   return XMLParser::RuleElement;
 }
 
+void XMLParser::ElementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElement(this);
+}
+
+void XMLParser::ElementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElement(this);
+}
+
+
 antlrcpp::Any XMLParser::ElementContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
     return parserVisitor->visitElement(this);
@@ -479,6 +532,19 @@ size_t XMLParser::ReferenceContext::getRuleIndex() const {
   return XMLParser::RuleReference;
 }
 
+void XMLParser::ReferenceContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterReference(this);
+}
+
+void XMLParser::ReferenceContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitReference(this);
+}
+
+
 antlrcpp::Any XMLParser::ReferenceContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
     return parserVisitor->visitReference(this);
@@ -537,6 +603,19 @@ size_t XMLParser::AttributeContext::getRuleIndex() const {
   return XMLParser::RuleAttribute;
 }
 
+void XMLParser::AttributeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAttribute(this);
+}
+
+void XMLParser::AttributeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAttribute(this);
+}
+
+
 antlrcpp::Any XMLParser::AttributeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
     return parserVisitor->visitAttribute(this);
@@ -588,6 +667,19 @@ tree::TerminalNode* XMLParser::ChardataContext::SEA_WS() {
 size_t XMLParser::ChardataContext::getRuleIndex() const {
   return XMLParser::RuleChardata;
 }
+
+void XMLParser::ChardataContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterChardata(this);
+}
+
+void XMLParser::ChardataContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitChardata(this);
+}
+
 
 antlrcpp::Any XMLParser::ChardataContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))
@@ -650,6 +742,19 @@ tree::TerminalNode* XMLParser::MiscContext::SEA_WS() {
 size_t XMLParser::MiscContext::getRuleIndex() const {
   return XMLParser::RuleMisc;
 }
+
+void XMLParser::MiscContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMisc(this);
+}
+
+void XMLParser::MiscContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<XMLParserListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMisc(this);
+}
+
 
 antlrcpp::Any XMLParser::MiscContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<XMLParserVisitor*>(visitor))

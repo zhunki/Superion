@@ -1,15 +1,17 @@
 
-// Generated from E:\xml\XMLParser.g4 by ANTLR 4.7
+// Generated from XMLParser.g4 by ANTLR 4.7
 
 #pragma once
+
 
 #include <iostream>
 #include <vector>
 #include "antlr4-runtime.h"
 #include "XMLParserVisitor.h"
-
 using namespace std;
 using namespace antlr4;
+
+
 
 /**
  * This class provides an empty implementation of XMLParserVisitor, which can be
@@ -17,9 +19,9 @@ using namespace antlr4;
  */
 class  XMLParserBaseVisitor : public XMLParserVisitor {
 public:
+	vector<misc::Interval> intervals;
+	vector<string> texts;
 
-  vector<misc::Interval> intervals;
-  vector<string> texts;
 
   virtual antlrcpp::Any visitDocument(XMLParser::DocumentContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());

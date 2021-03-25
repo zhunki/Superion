@@ -6154,6 +6154,7 @@ retry_external_pick:
    ****************/
   ret_val = 0;
   goto abandon_entry;
+  // penghui: personally think this is wrong! 
   
 havoc_stage:
 
