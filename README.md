@@ -70,9 +70,9 @@ Above instructions and scripts temporarily hardcode for XML, if you'd like try o
 
 3. Update `addcode.py`
 
-#### Notice
+## Notice
 From code line 6166, actually Superion will never go to the `havoc` mode! If the tree mutation fails, the entries are just abandoned, which is not suggested. In my testing, the performance of Superion is not as good as expected because of this. You can comment 6165-6166.
 
 
-#### Contact
+## Contact
 I am happy to discuss about this tool, please contact me via <lipenghui315@gmail.com>.
