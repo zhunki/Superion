@@ -70,7 +70,7 @@ Above instructions and scripts temporarily hardcode for XML, if you'd like try o
 3. Update `addcode.py`
 
 ## Notice
-From code line 6166 in `afl-fuzz.c`, actually Superion will never go to the `havoc` mode! If the tree mutation fails, the entries are just abandoned, which is not suggested. In my testing, the performance of Superion is not as good as expected because of this. You can comment 6165-6166.
+From code line 6166 in `afl-fuzz.c`, actually Superion will never go to the `havoc` mode! If the tree mutation fails, the entries are just abandoned, which is not suggested. In my testing, the performance of Superion is not as good as expected because of this. You can comment out 6165-6166.
 
 
 ## Contact
