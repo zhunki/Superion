@@ -36,8 +36,15 @@ You can replace the `GRAMMAR.g4` with your own grammar. Note that sometimes a la
 and the corresponding operations in each visitor:
     ```cpp
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex())));
     ```
+
+*NOTE* there is a bug in the authors' code! *The authors' code is inconsistent across parsers. Please carefully check before use*.
+- The `texts` vector is to save the possible candidate for mutation and replacement. It should store the whole tokens/elements. 
+- The function `ctx->getText()` takes as input an interval in the *string* level instead of token level.
+- The function `ctx->getSourceInterval()` actually returns an interval in the token level. 
+- Therefore, the last line shall use `misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex()));` as the argument instead of `ctx->getSourceInterval();`. 
+- The bug was found by Chen Yang from NUDT and credit would go to him or her.
 
 3. The authors also used `SecondVisitor` in their examples. The `SecondVisitor` is almost identical with `BaseVisitor` with only one vector:
     ```cpp
@@ -45,10 +52,11 @@ and the corresponding operations in each visitor:
     ```
 and the corresponding operations in each visitor:
     ```cpp
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    texts.push_back(ctx->start->getInputStream()->getText(misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex())));
     ```
 **I wrote a simple script `addcode.py` to achieve this**, e.g., add code to `BaseVisitor` and automatically generate `SecondVisitor`.
     Note that, the script automatically adds code to all visitors, which might not be always necessary. You can manually comment newly added code in some visitors for better performance.
+
 
 ### Compile the TreeMutation
 0. Simply run:
