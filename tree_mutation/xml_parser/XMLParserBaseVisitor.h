@@ -25,49 +25,65 @@ public:
 
   virtual antlrcpp::Any visitDocument(XMLParser::DocumentContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitProlog(XMLParser::PrologContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitContent(XMLParser::ContentContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitElement(XMLParser::ElementContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitReference(XMLParser::ReferenceContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitAttribute(XMLParser::AttributeContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitChardata(XMLParser::ChardataContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitMisc(XMLParser::MiscContext *ctx) override {
     intervals.push_back(ctx->getSourceInterval());
-    texts.push_back(ctx->start->getInputStream()->getText(ctx->getSourceInterval()));
+    
+    misc::Interval intvl= new misc::Interval(ctx->getStart()->getStartIndex(), ctx->getStop()->getStopIndex());
+    texts.push_back(ctx->start->getInputStream()->getText(intvl));
     return visitChildren(ctx);
   }
 
